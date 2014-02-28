@@ -1,0 +1,80 @@
+//
+//  ___FILENAME___
+//  ___PROJECTNAME___
+//
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//___COPYRIGHT___
+//
+
+#import "TC___FILEBASENAME___.h"
+
+#define kTC___FILEBASENAME___RowHeight
+
+@interface TC___FILEBASENAME___ ()
+
+@end
+
+@implementation TC___FILEBASENAME___
+@synthesize attachedTableView,oSelect;
+
+- (void)updateSelf
+{
+    [attachedTableView reloadData];
+}
+
+- (void)attachToTableView:(UITableView*)tv
+{
+    // Register the cell view nib
+    [tv registerNib:[UINib nibWithNibName:@"TCCell___FILEBASENAME___" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TCCell___FILEBASENAME___"];
+    
+    // Persist the attachment
+    attachedTableView = tv;
+    
+    // Set the datasource and delegate
+    [tv setDataSource:self];
+    [tv setDelegate:self];
+}
+
++ (TC___FILEBASENAME___*)attachToTableView:(UITableView*)tv
+{
+    TC___FILEBASENAME___* tc = [[TC___FILEBASENAME___ alloc] init];
+    [tc attachToTableView:tv];
+    return tc;
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Prep the cell
+    static NSString *CellIdentifier = @"TCCell___FILEBASENAME___";
+    TCCell___FILEBASENAME___ *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Customize the cell
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90.0f;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Send it to the parent
+    [oSelect execute:doc];
+}
+@end
