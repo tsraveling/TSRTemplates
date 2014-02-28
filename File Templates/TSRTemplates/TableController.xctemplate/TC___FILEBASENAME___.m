@@ -8,7 +8,8 @@
 
 #import "TC___FILEBASENAME___.h"
 
-#define kTC___FILEBASENAME___RowHeight
+#define k___FILEBASENAME___RowHeight      90.0f
+#define kCellIdentifier         @"TCCell___FILEBASENAME___"
 
 @interface TC___FILEBASENAME___ ()
 
@@ -25,7 +26,7 @@
 - (void)attachToTableView:(UITableView*)tv
 {
     // Register the cell view nib
-    [tv registerNib:[UINib nibWithNibName:@"TCCell___FILEBASENAME___" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TCCell___FILEBASENAME___"];
+    [tv registerNib:[UINib nibWithNibName:@"TCCell___FILEBASENAME___" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kCellIdentifier];
     
     // Persist the attachment
     attachedTableView = tv;
@@ -59,8 +60,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Prep the cell
-    static NSString *CellIdentifier = @"TCCell___FILEBASENAME___";
-    TCCell___FILEBASENAME___ *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    TCCell___FILEBASENAME___ *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     
     // Customize the cell
     
@@ -69,12 +69,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90.0f;
+    return kTC___FILEBASENAME___RowHeight;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Send it to the parent
-    [oSelect execute:doc];
+    [oSelect execute];
 }
 @end
